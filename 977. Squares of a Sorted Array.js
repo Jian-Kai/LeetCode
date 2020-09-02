@@ -2,17 +2,28 @@
  * @param {number[]} A
  * @return {number[]}
  */
-// https://leetcode.com/problems/squares-of-a-sorted-array/
-var sortedSquares = function (A) {
-  console.log(A);
-  const l = A.length;
-  const r = [];
+var sortedSquares = function(A) {
+    let l = A.length;
+    
+    const ans = new Array(l)
+    let i = 0;
+    let j = l - 1;
+    while(i <= j){
+        if(A[i]*A[i] > A[j]*A[j]){
+            ans[--l] = A[i] * A[i];
+            i++;
+        }
+        if(A[i]*A[i] <= A[j]*A[j]){
+            ans[--l] = A[j] * A[j];
+            j--;
+        }
+    }
+    
+    
+    return ans;
 };
 
-// const input = [-4, -1, 0, 3, 10];
-// [0,1,9,16,100]
 
-const input = [-7, -3, 2, 3, 11];
-// Output: [4, 9, 9, 49, 121]
-
-sortedSquares(input);
+/**
+ * merge sort 的概念 兩個指標分別從arr前後比較 平方後的大小 依序塞進陣列
+ */
